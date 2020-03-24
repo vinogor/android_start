@@ -10,8 +10,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/P0111resvalues" />
-            <option value="$PROJECT_DIR$/P0151contextmenu" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/p0031firstproject" />
             <option value="$PROJECT_DIR$/p0041basicviews" />
@@ -22,9 +20,11 @@
             <option value="$PROJECT_DIR$/p0091onclickbuttons" />
             <option value="$PROJECT_DIR$/p0101listener" />
             <option value="$PROJECT_DIR$/p0102activitylistener" />
+            <option value="$PROJECT_DIR$/p0111resvalues" />
             <option value="$PROJECT_DIR$/p0121logandmess" />
             <option value="$PROJECT_DIR$/p0131menusimple" />
             <option value="$PROJECT_DIR$/p0141menuadv" />
+            <option value="$PROJECT_DIR$/p0151contextmenu" />
             <option value="$PROJECT_DIR$/p0161dynamiclayout" />
             <option value="$PROJECT_DIR$/p0171dynamiclayout2" />
             <option value="$PROJECT_DIR$/p0180constraintlayoutintro" />
@@ -33,6 +33,7 @@
             <option value="$PROJECT_DIR$/p0201simpleanimation" />
             <option value="$PROJECT_DIR$/p0211twoactivity" />
             <option value="$PROJECT_DIR$/p0231oneactivitystate" />
+            <option value="$PROJECT_DIR$/p0241twoactivitystate" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
