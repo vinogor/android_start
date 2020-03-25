@@ -17,8 +17,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
     final String LOG_TAG = "myLogs";
 
-    Button btnAdd, btnRead, btnClear;
-    EditText etName, etEmail;
+    Button btnAdd, btnRead, btnClear, btnUpd, btnDel;
+    EditText etName, etEmail, etID;
 
     DBHelper dbHelper;
 
@@ -37,8 +37,15 @@ public class MainActivity extends Activity implements OnClickListener {
         btnClear = findViewById(R.id.btnClear);
         btnClear.setOnClickListener(this);
 
+        btnUpd = findViewById(R.id.btnUpd);
+        btnUpd.setOnClickListener(this);
+
+        btnDel = findViewById(R.id.btnDel);
+        btnDel.setOnClickListener(this);
+
         etName = findViewById(R.id.etName);
         etEmail = findViewById(R.id.etEmail);
+        etID = findViewById(R.id.etID);
 
         // создаем объект для создания и управления версиями БД
         dbHelper = new DBHelper(this);
@@ -54,12 +61,14 @@ public class MainActivity extends Activity implements OnClickListener {
         // получаем данные из полей ввода
         String name = etName.getText().toString();
         String email = etEmail.getText().toString();
+        String id = etID.getText().toString();
 
         // подключаемся к БД
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
 
         switch (v.getId()) {
+
             case R.id.btnAdd:
                 Log.d(LOG_TAG, "--- Insert in mytable: ---");
                 // подготовим данные для вставки в виде пар: наименование столбца - значение
@@ -70,6 +79,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 long rowID = db.insert("mytable", null, cv);
                 Log.d(LOG_TAG, "row inserted, ID = " + rowID);
                 break;
+
             case R.id.btnRead:
                 Log.d(LOG_TAG, "--- Rows in mytable: ---");
                 // делаем запрос всех данных из таблицы mytable, получаем Cursor
@@ -97,11 +107,38 @@ public class MainActivity extends Activity implements OnClickListener {
                     Log.d(LOG_TAG, "0 rows");
                 c.close();
                 break;
+
             case R.id.btnClear:
                 Log.d(LOG_TAG, "--- Clear mytable: ---");
                 // удаляем все записи
                 int clearCount = db.delete("mytable", null, null);
                 Log.d(LOG_TAG, "deleted rows count = " + clearCount);
+                break;
+
+            case R.id.btnUpd:
+                if (id.equalsIgnoreCase("")) {
+                    Log.d(LOG_TAG, "--- нечего апдейтить - не введён id ---");
+                    break;
+                }
+                Log.d(LOG_TAG, "--- Update mytable: ---");
+                // подготовим значения для обновления
+                cv.put("name", name);
+                cv.put("email", email);
+                // обновляем по id
+                int updCount = db.update("mytable", cv, "id = ?",
+                        new String[] { id });
+                Log.d(LOG_TAG, "updated rows count = " + updCount);
+                break;
+
+            case R.id.btnDel:
+                if (id.equalsIgnoreCase("")) {
+                    Log.d(LOG_TAG, "--- нечего удалять - не введён id ---");
+                    break;
+                }
+                Log.d(LOG_TAG, "--- Delete from mytable: ---");
+                // удаляем по id
+                int delCount = db.delete("mytable", "id = " + id, null);
+                Log.d(LOG_TAG, "deleted rows count = " + delCount);
                 break;
         }
         // закрываем подключение к БД
