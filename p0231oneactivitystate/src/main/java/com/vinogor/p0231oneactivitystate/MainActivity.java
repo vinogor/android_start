@@ -3,6 +3,7 @@ package com.vinogor.p0231oneactivitystate;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d(TAG, "MainActivity: onRestoreInstanceState()");
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "MainActivity: onResume()");
@@ -35,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "MainActivity: onPause()");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "MainActivity: onSaveInstanceState()");
     }
 
     @Override
